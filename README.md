@@ -1,4 +1,4 @@
-# AngularThird
+# MyApp
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.7.
 
@@ -57,3 +57,26 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+
+## Additional Resources
+# angular19-third
+
+## Installation
+1. npm install -g @angular/cli [First Time need this commond, Also node & npm must installed]
+2. ng version
+3. ng new my-app  [create angular project]
+4. ng serve
+## Generate Component
+ng g c components/variables
+## install bootstrap & css
+npm i bootstrap font-awesome bootstrap-icons rxjs
+## Generate guard
+src/app/guard$ ng g g checkLogin
+## Start a specific Port
+ng serve --port 4209
+
+
+## SWagger API Link
+https://projectapi.gerasim.in/index.html
