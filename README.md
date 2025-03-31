@@ -69,7 +69,7 @@ For more information on using the Angular CLI, including detailed command refere
 3. ng new my-app  [create angular project]
 4. ng serve
 ## Generate Component
-ng g c components/variables
+ng g c components/variables 
 ## install bootstrap & css
 npm i bootstrap font-awesome bootstrap-icons rxjs
 ## Generate guard
