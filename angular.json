@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-third": {
+    "customer-panel": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/angular-third",
+            "outputPath": "dist/customer-panel",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-third:build:production"
+              "buildTarget": "customer-panel:build:production"
             },
             "development": {
-              "buildTarget": "angular-third:build:development"
+              "buildTarget": "customer-panel:build:development"
             }
           },
           "defaultConfiguration": "development"
