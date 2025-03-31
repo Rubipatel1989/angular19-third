@@ -15,7 +15,7 @@ export class LoginComponent {
   onLogin(){
     if(this.loginObj.userName == 'admin' && this.loginObj.password == 'admin'){
       console.log('Login Success');
-      this.router.navigate(['/customers']);
+      this.router.navigate(['/customer-list']);
       localStorage.setItem('angularHiddenUser', this.loginObj.userName);
     } else{
       alert('Invalid login details');

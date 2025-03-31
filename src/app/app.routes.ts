@@ -19,7 +19,7 @@ export const routes: Routes = [
         component: LayoutComponent,
         canActivate: [checkLoginGuard],
         children: [
-            { path: 'customers', component: CustomerListComponent, canActivate: [checkLoginGuard] },
+            { path: 'customer-list', component: CustomerListComponent, canActivate: [checkLoginGuard] },
 
         ]
     }
