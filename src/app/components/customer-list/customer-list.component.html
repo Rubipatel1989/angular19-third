@@ -1,15 +1,15 @@
 <div class="row mt-4">
-    <h2 class="mb-3 text-center">User Reactive Management</h2>
+    <h2 class="mb-3 text-center">Customer Management</h2>
 
     <div [class]="isSideFormVisible ? 'col-md-7 table-container' : 'col-md-12 table-container'">
         <div class="card bg-success">
-            <div class="row p-3">
-                <div class="col-6">
-                    <h4>User List</h4>
-                </div>
-                <div class="col-6 text-end">
+            <div class="row p-3 text-center">
+               
+                    <h4>Customer List</h4>
+               
+                <!-- <div class="col-6 text-end">
                     <button type="button" class="btn btn-primary" (click)="toggleSideForm()">Add New User</button>
-                </div>
+                </div> -->
             </div>
         </div>
         <!-- Loader -->
@@ -44,9 +44,9 @@
                             <button class="btn btn-primary me-2" (click)="editUser(item)">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
-                            <button class="btn btn-danger" (click)="OndeleteUser(item.userId)">
+                            <!-- <button class="btn btn-danger" (click)="OndeleteUser(item.userId)">
                                 <i class="fa-solid fa-trash"></i>
-                            </button>
+                            </button> -->
                         </td>
                     </tr>
                     }
@@ -61,7 +61,7 @@
                 <div class="card-header bg-success">
                     <div class="row p-3">
                     <div class="col-6">
-                        <h4 id="formTitle">Add User</h4>
+                        <h4 id="formTitle">Update Customer</h4>
                     </div>
                     <div class="col-6 text-end">
                         <button type="button" class="btn btn-warning" (click)="toggleSideForm()">Close</button>
