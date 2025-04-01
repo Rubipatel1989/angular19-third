@@ -1,0 +1,16 @@
+.side-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 400px;
+    background-color: #fff;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+    z-index: 1050;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .slide-in {
+    transform: translateX(0%);
+  }
+  

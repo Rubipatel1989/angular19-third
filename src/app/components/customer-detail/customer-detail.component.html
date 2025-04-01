@@ -1,1 +1,15 @@
-<p>customer-detail works!</p>
+<div class="side-panel slide-in">
+    <div class="card">
+      <div class="card-header bg-success d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Customer Details</h5>
+        <button class="btn btn-warning btn-sm" (click)="close()">Close</button>
+      </div>
+      <div class="card-body" *ngIf="customer">
+        <p><strong>User Name:</strong> {{ customer.userName }}</p>
+        <p><strong>Email:</strong> {{ customer.emailId }}</p>
+        <p><strong>Full Name:</strong> {{ customer.fullName }}</p>
+        <p><strong>Role:</strong> {{ customer.role }}</p>
+      </div>
+    </div>
+  </div>
+  

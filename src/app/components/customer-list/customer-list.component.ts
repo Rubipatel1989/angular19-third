@@ -1,11 +1,12 @@
-import { NgClass, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, FormGroupName, Validators, FormsModule } from '@angular/forms';
+import { CustomerDetailsComponent } from '../customer-detail/customer-detail.component';
 
 @Component({
   selector: 'app-user-reactive',
-  imports: [ReactiveFormsModule, NgIf, NgClass],
+  imports: [ReactiveFormsModule, NgIf, CustomerDetailsComponent],
   templateUrl: './customer-list.component.html',
   styleUrl: './customer-list.component.css'
 })
@@ -15,6 +16,7 @@ export class CustomerListComponent {
   isSideFormVisible: boolean = false;
   isSaveButtonVisible: boolean = true;
   isUpdateButtonVisible: boolean = false;
+  selectedCustomer: any = null;
   userForm: FormGroup = new FormGroup({
     userId: new FormControl(0),
     userName: new FormControl('',[Validators.required,Validators.minLength(5)]),
@@ -49,24 +51,7 @@ export class CustomerListComponent {
 
   toggleSideForm() {
     this.isSideFormVisible = !this.isSideFormVisible
-  };
-  onSaveUser() { 
-    const formValue = this.userForm.value;
-    this.http.post('https://projectapi.gerasim.in/api/Complaint/addnewuser', formValue).subscribe((response: any) => {
-      if(response.result){
-        this.getUsers();
-      } else{
-        alert(response.message);
-      }      
-    })
-  };
-  onUpdteUser() {
-    const formValue = this.userForm.value;
-    this.http.post('https://projectapi.gerasim.in/api/Complaint/UpdateUser', formValue).subscribe((response: any) => {
-      console.log(response);
-      this.getUsers();
-    })
-   };
+  }; 
   editUser(data: any) {
     this.isSideFormVisible = true;
     this.isSaveButtonVisible = false;
@@ -74,11 +59,16 @@ export class CustomerListComponent {
     this.userForm.patchValue(data);
 
    };
-  OndeleteUser(index: number) {
-    this.http.delete('https://projectapi.gerasim.in/api/Complaint/DeleteUserByUserId?userId=' + index).subscribe((response: any) => {
-      console.log(response);
-      this.getUsers();
-    })
-   };
+   
+
+showCustomerDetails(customer: any) {
+  this.selectedCustomer = customer;
+}
+
+closeDetails() {
+  this.selectedCustomer = null;
+}
+
+
 
 }
