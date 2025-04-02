@@ -13,25 +13,21 @@ import { CustomerDetailsComponent } from '../customer-detail/customer-detail.com
 export class CustomerListComponent {
   http = inject(HttpClient);
   isLoading: boolean = false;
-  isSideFormVisible: boolean = false;
-  isSaveButtonVisible: boolean = true;
-  isUpdateButtonVisible: boolean = false;
   selectedCustomer: any = null;
   userForm: FormGroup = new FormGroup({
     userId: new FormControl(0),
-    userName: new FormControl('',[Validators.required,Validators.minLength(5)]),
-    emailId: new FormControl('',[Validators.required,Validators.email]),
-    fullName: new FormControl('',[Validators.required]),
+    userName: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    emailId: new FormControl('', [Validators.required, Validators.email]),
+    fullName: new FormControl('', [Validators.required]),
     role: new FormControl(''),
-    password: new FormControl('',[Validators.required,Validators.minLength(5)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(5)]),
     createdDate: new FormControl(new Date()),
     projectName: new FormControl(''),
     refreshToken: new FormControl(''),
     refreshTokenExpiryTime: new FormControl(new Date()),
 
-
   });
-  
+
   userList: any[] = [];
   constructor() {
     this.getUsers();
@@ -49,26 +45,12 @@ export class CustomerListComponent {
     })
   }
 
-  toggleSideForm() {
-    this.isSideFormVisible = !this.isSideFormVisible
-  }; 
-  editUser(data: any) {
-    this.isSideFormVisible = true;
-    this.isSaveButtonVisible = false;
-    this.isUpdateButtonVisible = true;
-    this.userForm.patchValue(data);
+  showCustomerDetails(customer: any) {
+    this.selectedCustomer = customer;
+  }
 
-   };
-   
-
-showCustomerDetails(customer: any) {
-  this.selectedCustomer = customer;
-}
-
-closeDetails() {
-  this.selectedCustomer = null;
-}
-
-
+  closeDetails() {
+    this.selectedCustomer = null;
+  }
 
 }

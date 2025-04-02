@@ -1,15 +1,9 @@
-<div class="row mt-4">
-    <h2 class="mb-3 text-center">Customer Management</h2>
-
-    <div [class]="isSideFormVisible ? 'col-md-7 table-container' : 'col-md-12 table-container'">
+<div class="row">
+    <!-- <h2 class="mb-3 text-center">Customer Management</h2> -->
+    <div class="table-container col-md-12 table-container">
         <div class="card bg-success">
-            <div class="row p-3 text-center">
-               
-                    <h4>Customer List</h4>
-               
-                <!-- <div class="col-6 text-end">
-                    <button type="button" class="btn btn-primary" (click)="toggleSideForm()">Add New User</button>
-                </div> -->
+            <div class="row text-center">               
+                    <h4>Customer List</h4>               
             </div>
         </div>
         <!-- Loader -->
@@ -18,7 +12,6 @@
                 <span class="visually-hidden">Loading...</span>
             </div>
         </div>
-
         <!-- Table -->
         <div class="card-body" *ngIf="!isLoading">
             <table class="table table-bordered table-striped">
@@ -43,18 +36,14 @@
                         <td class="d-flex">
                             <button class="btn btn-primary me-2" (click)="showCustomerDetails(item)">
                                 <i class="fa-solid fa-eye"></i>
-                              </button>
-                              
+                              </button>                              
                         </td>
                     </tr>
                     }
                 </tbody>
             </table>
         </div>
-    </div>
-    <!-- Side Panel (User Form) -->
-    
-   
+    </div>   
 </div>
-
+<!-- Side Panel (User Form) -->   
 <app-customer-detail *ngIf="selectedCustomer" [customer]="selectedCustomer" (closePanel)="closeDetails()"></app-customer-detail>
