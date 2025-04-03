@@ -1,75 +1,72 @@
-import { NgFor, NgIf } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Component, inject, } from '@angular/core';
-import { FormGroup, FormControl, ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { NgIf, NgFor } from '@angular/common';
 import { CustomerDetailsComponent } from '../customer-detail/customer-detail.component';
-
+import { FormsModule } from '@angular/forms';
+import { Environment } from '../../../environments/environment';
 @Component({
   selector: 'app-user-reactive',
-  imports: [ReactiveFormsModule, NgIf, CustomerDetailsComponent, FormsModule, NgFor],
+  standalone: true,
+  imports: [NgIf, CustomerDetailsComponent, FormsModule],
   templateUrl: './customer-list.component.html',
   styleUrl: './customer-list.component.css'
 })
 export class CustomerListComponent {
   http = inject(HttpClient);
-  isLoading: boolean = false;
+  isLoading = false;
   selectedCustomer: any = null;
   searchText = '';
   currentPage = 1;
-  pageSize = 10; 
-
+  pageSize = 10;
   userList: any[] = [];
+
   constructor() {
-    this.getUsers();
+    this.getCustomers();
   }
-  getUsers() {
-    this.isLoading = true; // https://projectapi.gerasim.in/api/Complaint/GetAllUsers
-    this.http.get('https://projectapi.gerasim.in/api/Complaint/GetAllUsers').subscribe((response: any) => {
-      console.log(response.data);
-      if (response.result == true) {
-        this.userList = response.data;
+
+  getCustomers() {
+    this.isLoading = true;
+    const token = localStorage.getItem('authToken') || '';
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    this.http.get<any>(`${Environment.apiBaseUrl}/customers/search?searchCriteria[currentPage]=${this.currentPage}&searchCriteria[pageSize]=${this.pageSize}`, { headers }).subscribe({
+      next: (response) => {
+        this.userList = response.items;
         this.isLoading = false;
-      } else {
-        alert(response.message);
+      },
+      error: (err) => {
+        alert('Failed to fetch customers');
+        this.isLoading = false;
+        console.error(err);
       }
-    })
-  }
-
-  showCustomerDetails(customer: any) {
-    this.selectedCustomer = customer;
-  }
-
-  closeDetails() {
-    this.selectedCustomer = null;
+    });
   }
 
   get filteredUsers() {
     let filtered = this.userList;
-
     if (this.searchText.trim()) {
       const lower = this.searchText.toLowerCase();
       filtered = filtered.filter((item: any) =>
-        item.userName?.toLowerCase().includes(lower) ||
-        String(item.id).includes(lower)
+        item.firstname?.toLowerCase().includes(lower) ||
+        item.lastname?.toLowerCase().includes(lower) ||
+        item.email?.toLowerCase().includes(lower)
       );
     }
-
-    const startIndex = (this.currentPage - 1) * this.pageSize;
-    return filtered.slice(startIndex, startIndex + this.pageSize);
-  }
-
-  get totalPages() {
-    const filtered = this.searchText.trim()
-      ? this.userList.filter((item: any) =>
-        item.userName?.toLowerCase().includes(this.searchText.toLowerCase())
-      )
-      : this.userList;
-    return Math.ceil(filtered.length / this.pageSize);
+    return filtered;
   }
 
   goToPage(page: number) {
     this.currentPage = page;
+    this.getCustomers();
   }
 
+  get totalPages() {
+    return Math.ceil(1797 / this.pageSize); // Hardcoded total_count for now
+  }
 
+  getState(address: any[]) {
+    return address?.[0]?.region?.region || '';
+  }
 }

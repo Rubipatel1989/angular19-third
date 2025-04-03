@@ -1,0 +1,9 @@
+{
+    "/rest": {
+      "target": "https://qa.skinsolutions.md",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+}
+  
