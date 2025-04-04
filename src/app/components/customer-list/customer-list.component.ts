@@ -18,6 +18,7 @@ export class CustomerListComponent {
   searchText = '';
   currentPage = 1;
   pageSize = 10;
+  totalCount = 0;
   userList: any[] = [];
 
   constructor() {
@@ -34,6 +35,7 @@ export class CustomerListComponent {
     this.http.get<any>(`${Environment.apiBaseUrl}/customers/search?searchCriteria[currentPage]=${this.currentPage}&searchCriteria[pageSize]=${this.pageSize}`, { headers }).subscribe({
       next: (response) => {
         this.userList = response.items;
+        this.totalCount = response.total_count;
         this.isLoading = false;
       },
       error: (err) => {
@@ -63,10 +65,17 @@ export class CustomerListComponent {
   }
 
   get totalPages() {
-    return Math.ceil(1797 / this.pageSize); // Hardcoded total_count for now
+    return Math.ceil(this.totalCount / this.pageSize);
   }
 
   getState(address: any[]) {
     return address?.[0]?.region?.region || '';
+  }
+
+  showCustomerDetails(customer: any) {
+    this.selectedCustomer = customer;
+  }
+  closeDetails() {
+    this.selectedCustomer = null;
   }
 }

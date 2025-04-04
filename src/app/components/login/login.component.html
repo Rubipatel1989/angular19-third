@@ -9,7 +9,13 @@
         <input type="password" [(ngModel)]="loginObj.password" name="password" required="">
         <label>Password</label>
       </div>
-      <button class="btn btn-primary" type="submit" (click)="onLogin()">Submit</button>
+      <button class="btn btn-primary" type="submit" [disabled]="isLoading" (click)="onLogin()">
+        <ng-container *ngIf="!isLoading">Submit</ng-container>
+        <ng-container *ngIf="isLoading">
+          <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+          Logging in...
+        </ng-container>
+      </button>
      
     </form>
   </div>

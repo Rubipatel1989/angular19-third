@@ -85,3 +85,6 @@ https://projectapi.gerasim.in/index.html
 NGFor DOne [Part 4]
 https://www.youtube.com/watch?v=mKKD6EDyfU4&list=PPSV
 09:54
+
+## Run using proxy server
+ng serve --configuration development

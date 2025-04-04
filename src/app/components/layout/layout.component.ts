@@ -23,6 +23,7 @@ export class LayoutComponent {
 
   onLogout(){
     localStorage.removeItem('angularHiddenUser');
+    localStorage.removeItem('authToken');
     this.router.navigate(['/login']);
   } 
 }

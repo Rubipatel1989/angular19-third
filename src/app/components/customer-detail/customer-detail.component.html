@@ -5,10 +5,9 @@
         <button class="btn btn-warning btn-sm" (click)="close()">Close</button>
       </div>
       <div class="card-body" *ngIf="customer">
-        <p><strong>User Name:</strong> {{ customer.userName }}</p>
-        <p><strong>Email:</strong> {{ customer.emailId }}</p>
-        <p><strong>Full Name:</strong> {{ customer.fullName }}</p>
-        <p><strong>Role:</strong> {{ customer.role }}</p>
+        <p><strong>User ID:</strong> {{ customer.id }}</p>
+        <p><strong>Email:</strong> {{ customer.email }}</p>
+        <p><strong>Full Name:</strong> {{ customer.firstname }} {{ customer.lastname }}</p>
       </div>
     </div>
   </div>

@@ -28,9 +28,9 @@ export class LoginComponent {
 
     this.http.post(url, body).subscribe({
       next: (response: any) => {
-        // Magento returns plain string token
         if (typeof response === 'string') {
           localStorage.setItem('authToken', response);
+          localStorage.setItem('angularHiddenUser', this.loginObj.userName);
           this.router.navigate(['/customer-list']);
         } else {
           alert('Unexpected token format');
