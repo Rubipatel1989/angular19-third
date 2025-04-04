@@ -1,14 +1,50 @@
 <div class="side-panel slide-in">
-    <div class="card">
-      <div class="card-header bg-success d-flex justify-content-between align-items-center">
-        <h5 class="mb-0">Customer Details</h5>
-        <button class="btn btn-warning btn-sm" (click)="close()">Close</button>
-      </div>
-      <div class="card-body" *ngIf="customer">
-        <p><strong>User ID:</strong> {{ customer.id }}</p>
-        <p><strong>Email:</strong> {{ customer.email }}</p>
-        <p><strong>Full Name:</strong> {{ customer.firstname }} {{ customer.lastname }}</p>
-      </div>
+  <!-- Top Strip -->
+  <div class="top-strip">
+    <span>{{ customer.email }}</span>
+    <button class="btn btn-warning btn-sm" (click)="close()">Close Panel</button>
+  </div>
+
+  <!-- Content Area -->
+  <div class="content-wrapper">
+    <!-- Sidebar Menu -->
+    <div class="menu">
+      <button (click)="activeMenu = 'address'">Address</button>
+      <button (click)="activeMenu = 'medical'">Medical Info</button>
+      <button (click)="activeMenu = 'orders'">Orders</button>
+    </div>
+
+    <!-- Right Content -->
+    <div class="inner-content">
+      <ng-container [ngSwitch]="activeMenu">
+        <div *ngSwitchCase="'address'">
+          <h5>Address Info</h5>
+          <p *ngIf="customer?.addresses?.length">
+            {{ customer.addresses[0]?.street?.[0] }}<br />
+            {{ customer.addresses[0]?.city }}, {{ customer.addresses[0]?.region?.region }}<br />
+            {{ customer.addresses[0]?.telephone }}
+          </p>
+          <button class="btn btn-secondary btn-sm" (click)="activeMenu = null">Close Section</button>
+        </div>
+
+        <div *ngSwitchCase="'medical'">
+          <h5>Medical Info</h5>
+          <p>Coming soon...</p>
+          <button class="btn btn-secondary btn-sm" (click)="activeMenu = null">Close Section</button>
+        </div>
+
+        <div *ngSwitchCase="'orders'">
+          <h5>Orders</h5>
+          <p>Coming soon...</p>
+          <button class="btn btn-secondary btn-sm" (click)="activeMenu = null">Close Section</button>
+        </div>
+
+        <div *ngSwitchDefault>
+          <p><strong>User ID:</strong> {{ customer.id }}</p>
+          <p><strong>Email:</strong> {{ customer.email }}</p>
+          <p><strong>Full Name:</strong> {{ customer.firstname }} {{ customer.lastname }}</p>
+        </div>
+      </ng-container>
     </div>
   </div>
-  
+</div>
