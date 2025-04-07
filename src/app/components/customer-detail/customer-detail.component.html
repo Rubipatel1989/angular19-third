@@ -9,11 +9,11 @@
   <div class="content-wrapper">
     <!-- Sidebar Menu -->
     <div class="menu">
-      <button (click)="activeMenu = null">Customer Info</button>
-      <button (click)="activeMenu = 'address'">Address</button>
-      <button (click)="activeMenu = 'medical'">Medical Info</button>
-      <button (click)="activeMenu = 'orders'">Orders</button>
-      <button (click)="activeMenu = 'prescriptions'">Prescriptions</button>
+      <button [ngClass]="{ 'active': activeMenu === null }" (click)="activeMenu = null">Customer Info</button>
+      <button [ngClass]="{ 'active': activeMenu === 'address' }" (click)="activeMenu = 'address'">Address</button>
+      <button [ngClass]="{ 'active': activeMenu === 'medical' }" (click)="activeMenu = 'medical'">Medical Info</button>
+      <button [ngClass]="{ 'active': activeMenu === 'orders' }" (click)="activeMenu = 'orders'">Orders</button>
+      <button [ngClass]="{ 'active': activeMenu === 'prescriptions' }" (click)="activeMenu = 'prescriptions'">Prescriptions</button>
     </div>
     <!-- Right Content -->
     <div class="inner-content">
