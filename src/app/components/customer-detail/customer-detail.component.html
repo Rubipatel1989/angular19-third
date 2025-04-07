@@ -18,37 +18,11 @@
     <!-- Right Content -->
     <div class="inner-content">
       <ng-container [ngSwitch]="activeMenu">
-        <div *ngSwitchDefault>
-          <p><strong>User ID:</strong> {{ customer.id }}</p>
-          <p><strong>Email:</strong> {{ customer.email }}</p>
-          <p><strong>Full Name:</strong> {{ customer.firstname }} {{ customer.lastname }}</p>
-        </div>
-        <!-- <div *ngSwitchCase="'address'">
-          <h5>Address Info</h5>
-          <p *ngIf="customer?.addresses?.length">
-            {{ customer.addresses[0]?.street?.[0] }}<br />
-            {{ customer.addresses[0]?.city }}, {{ customer.addresses[0]?.region?.region }}<br />
-            {{ customer.addresses[0]?.telephone }}
-          </p>
-          <button class="btn btn-secondary btn-sm" (click)="activeMenu = null">Close Section</button>
-        </div> -->
-        <app-address *ngSwitchCase="'address'" [address]="customer.addresses[0]" (close)="activeMenu = null"></app-address>
-
-        <div *ngSwitchCase="'medical'">
-          <h5>Medical Info</h5>
-          <p>Coming soon...</p>
-          <button class="btn btn-secondary btn-sm" (click)="activeMenu = null">Close Section</button>
-        </div>
-        <div *ngSwitchCase="'orders'">
-          <h5>Orders</h5>
-          <p>Coming soon...</p>
-          <button class="btn btn-secondary btn-sm" (click)="activeMenu = null">Close Section</button>
-        </div>
-        <div *ngSwitchCase="'prescriptions'">
-          <h5>Prescriptions</h5>
-          <p>Coming soon...</p>
-          <button class="btn btn-secondary btn-sm" (click)="activeMenu = null">Close Section</button>
-        </div>
+        <app-customer-info *ngSwitchCase="null" [customerInfo]="customer" (close)="activeMenu = null"></app-customer-info>
+        <app-address *ngSwitchCase="'address'" [address]="customer.addresses[0]" (close)="activeMenu = null"></app-address>        
+        <app-medical-info *ngSwitchCase="'medical'" [medicalInfo]="null" (close)="activeMenu = null"></app-medical-info>
+        <app-orders *ngSwitchCase="'orders'" [orders]="null" (close)="activeMenu = null"></app-orders>
+        <app-prescriptions *ngSwitchCase="'prescriptions'" [prescriptionsInfo]="null" (close)="activeMenu = null"></app-prescriptions>
       </ng-container>
     </div>
   </div>
