@@ -23,7 +23,7 @@
           <p><strong>Email:</strong> {{ customer.email }}</p>
           <p><strong>Full Name:</strong> {{ customer.firstname }} {{ customer.lastname }}</p>
         </div>
-        <div *ngSwitchCase="'address'">
+        <!-- <div *ngSwitchCase="'address'">
           <h5>Address Info</h5>
           <p *ngIf="customer?.addresses?.length">
             {{ customer.addresses[0]?.street?.[0] }}<br />
@@ -31,7 +31,9 @@
             {{ customer.addresses[0]?.telephone }}
           </p>
           <button class="btn btn-secondary btn-sm" (click)="activeMenu = null">Close Section</button>
-        </div>
+        </div> -->
+        <app-address *ngSwitchCase="'address'" [address]="customer.addresses[0]" (close)="activeMenu = null"></app-address>
+
         <div *ngSwitchCase="'medical'">
           <h5>Medical Info</h5>
           <p>Coming soon...</p>

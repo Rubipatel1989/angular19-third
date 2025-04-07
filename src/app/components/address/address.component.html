@@ -1,0 +1,7 @@
+<h5>Address Info</h5>
+<p *ngIf="address">
+  {{ address.street[0] }}<br />
+  {{ address.city }}, {{ address.region?.region }}<br />
+  {{ address.telephone }}
+</p>
+<button class="btn btn-secondary btn-sm" (click)="closeSection()">Close Section</button>
