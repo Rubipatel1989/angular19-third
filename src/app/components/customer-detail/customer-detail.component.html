@@ -1,7 +1,7 @@
 <div class="side-panel slide-in">
   <!-- Top Strip -->
   <div class="top-strip">
-    <span>{{ customer.email }}</span>
+    <span>{{ customer.firstname }} {{ customer.lastname }} → {{ customer.email }}</span>
     <button class="btn btn-warning btn-sm" (click)="close()">Close Panel</button>
   </div>
 
@@ -9,14 +9,20 @@
   <div class="content-wrapper">
     <!-- Sidebar Menu -->
     <div class="menu">
+      <button (click)="activeMenu = null">Customer Info</button>
       <button (click)="activeMenu = 'address'">Address</button>
       <button (click)="activeMenu = 'medical'">Medical Info</button>
       <button (click)="activeMenu = 'orders'">Orders</button>
+      <button (click)="activeMenu = 'prescriptions'">Prescriptions</button>
     </div>
-
     <!-- Right Content -->
     <div class="inner-content">
       <ng-container [ngSwitch]="activeMenu">
+        <div *ngSwitchDefault>
+          <p><strong>User ID:</strong> {{ customer.id }}</p>
+          <p><strong>Email:</strong> {{ customer.email }}</p>
+          <p><strong>Full Name:</strong> {{ customer.firstname }} {{ customer.lastname }}</p>
+        </div>
         <div *ngSwitchCase="'address'">
           <h5>Address Info</h5>
           <p *ngIf="customer?.addresses?.length">
@@ -26,23 +32,20 @@
           </p>
           <button class="btn btn-secondary btn-sm" (click)="activeMenu = null">Close Section</button>
         </div>
-
         <div *ngSwitchCase="'medical'">
           <h5>Medical Info</h5>
           <p>Coming soon...</p>
           <button class="btn btn-secondary btn-sm" (click)="activeMenu = null">Close Section</button>
         </div>
-
         <div *ngSwitchCase="'orders'">
           <h5>Orders</h5>
           <p>Coming soon...</p>
           <button class="btn btn-secondary btn-sm" (click)="activeMenu = null">Close Section</button>
         </div>
-
-        <div *ngSwitchDefault>
-          <p><strong>User ID:</strong> {{ customer.id }}</p>
-          <p><strong>Email:</strong> {{ customer.email }}</p>
-          <p><strong>Full Name:</strong> {{ customer.firstname }} {{ customer.lastname }}</p>
+        <div *ngSwitchCase="'prescriptions'">
+          <h5>Prescriptions</h5>
+          <p>Coming soon...</p>
+          <button class="btn btn-secondary btn-sm" (click)="activeMenu = null">Close Section</button>
         </div>
       </ng-container>
     </div>
