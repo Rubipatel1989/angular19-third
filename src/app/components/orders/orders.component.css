@@ -1,0 +1,17 @@
+.order-wrapper {
+    padding: 1rem;
+  }
+  
+  .card-header {
+    font-size: 1rem;
+  }
+  
+  .table th, .table td {
+    vertical-align: middle;
+  }
+  .order-wrapper {
+    max-height: 80vh;
+    overflow-y: auto;
+    padding-right: 10px; /* optional for scrollbar space */
+  }
+    

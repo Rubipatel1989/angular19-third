@@ -21,7 +21,7 @@
         <app-customer-info *ngSwitchCase="null" [customerInfo]="customer" (close)="activeMenu = null"></app-customer-info>
         <app-address *ngSwitchCase="'address'" [address]="customer.addresses[0]" (close)="activeMenu = null"></app-address>        
         <app-medical-info *ngSwitchCase="'medical'" [medicalInfo]="null" (close)="activeMenu = null"></app-medical-info>
-        <app-orders *ngSwitchCase="'orders'" [orders]="null" (close)="activeMenu = null"></app-orders>
+        <app-orders *ngSwitchCase="'orders'" [customerId]="customer.id" (close)="activeMenu = null"></app-orders>
         <app-prescriptions *ngSwitchCase="'prescriptions'" [prescriptionsInfo]="null" (close)="activeMenu = null"></app-prescriptions>
       </ng-container>
     </div>
